@@ -81,6 +81,28 @@ st.success(f"\"Oh look at me, i'm interested in current affairs!\"")
 
 st.markdown("Here's the fucking news:")
 
+st.markdown('''
+<style>
+a.bbc-link {
+    color: #1a0dab;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+a.bbc-link:hover, a.bbc-link:focus {
+    color: #004080;
+    text-decoration: underline;
+    outline: none;
+}
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+</style>
+''', unsafe_allow_html=True)
 
 # %%
 for i, headline in enumerate(links, start=1):
@@ -88,24 +110,7 @@ for i, headline in enumerate(links, start=1):
     swearyheadline = (f"{i}. {swearyheadline}")
     url= headline["url"]
     
-    link_html = f'''
-    <style>
-    a.bbc-link {{
-        color: #1a0dab;           /* BBC blue */
-        text-decoration: none;
-        font-weight: 600;
-        font-family: Arial, sans-serif;
-        cursor: pointer;
-        transition: color 0.2s ease-in-out;
-    }}
-    a.bbc-link:hover, a.bbc-link:focus {{
-        color: #004080;           /* Darker blue on hover/focus */
-        text-decoration: underline;
-        outline: none;
-    }}
-    </style>
-    <a href="{url}" target="_blank" class="bbc-link">{swearyheadline}</a>
-    '''
+    link_html = (f"<a href=\"{url}\" target=\"_blank\" class=\"bbc-link\">{swearyheadline}</a><hr>")
 
     st.markdown(link_html, unsafe_allow_html=True)
 
